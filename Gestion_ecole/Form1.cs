@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,7 +31,7 @@ namespace Gestion_ecole
                     string query = "SELECT role FROM Users WHERE email=@email AND mdp=@mdp AND role='Administrateur'";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@email", txtIdentifiant.Text);
-                    cmd.Parameters.AddWithValue("@mdp", txtMdp.Text); // N'oubliez pas d'utiliser un mécanisme de hachage sécurisé pour les mots de passe en production
+                    cmd.Parameters.AddWithValue("@mdp", txtMdp.Text); //doit implementer une methode de hachage pour securisé le mot de passe
 
                     var role = cmd.ExecuteScalar();
 
