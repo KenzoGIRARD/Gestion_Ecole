@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,10 +35,10 @@ namespace Gestion_ecole
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-           // txtNom.Text = dgEleves.CurrentRow.Cells[1].Value.ToString();
-          //  txtPrenom.Text = dgEleves.CurrentRow.Cells[2].Value.ToString();
-          /*  txtEmail.Text = dgEleves.CurrentRow.Cells[3].Value.ToString();
-            txtClasse.Text = dgElevs.CurrentRow.Cells[4].Value.ToString();
+           /*txtNom.Text = dgEleves.CurrentRow.Cells[1].Value.ToString();
+         txtPrenom.Text = dgEleves.CurrentRow.Cells[2].Value.ToString();
+          txtEmail.Text = dgEleves.CurrentRow.Cells[3].Value.ToString();
+            txtClasse.Text = dgEleves.CurrentRow.Cells[4].Value.ToString();
            txtTel.Text = dgEleves.CurrentRow.Cells[5].Value.ToString(); */
         }
 
