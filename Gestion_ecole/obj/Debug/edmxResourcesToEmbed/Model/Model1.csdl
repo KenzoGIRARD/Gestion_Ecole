@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bd_EcoleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Absences">
+    <Key>
+      <PropertyRef Name="idAbsence" />
+    </Key>
+    <Property Name="idAbsence" Type="Int32" Nullable="false" />
+    <Property Name="idEleve" Type="Int32" Nullable="false" />
+    <Property Name="idCours" Type="Int32" Nullable="false" />
+    <Property Name="DateAbsence" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Justifie" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__Absences__idCour__45F365D3" FromRole="Absences" ToRole="Cours" />
+    <NavigationProperty Name="Eleves" Relationship="Self.FK__Absences__idElev__44FF419A" FromRole="Absences" ToRole="Eleves" />
+  </EntityType>
+  <EntityType Name="Classes">
+    <Key>
+      <PropertyRef Name="ID_Classe" />
+    </Key>
+    <Property Name="ID_Classe" Type="Int32" Nullable="false" />
+    <Property Name="Nom_de_Classe" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idNiveau" Type="Int32" Nullable="false" />
+    <Property Name="Année_Scolaire" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Niveaux" Relationship="Self.FK__Classes__idNivea__2B3F6F97" FromRole="Classes" ToRole="Niveaux" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__Cours__ID_Classe__38996AB5" FromRole="Classes" ToRole="Cours" />
+    <NavigationProperty Name="Eleves" Relationship="Self.FK__Eleves__ID_Class__2F10007B" FromRole="Classes" ToRole="Eleves" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="idCours" />
+    </Key>
+    <Property Name="idCours" Type="Int32" Nullable="false" />
+    <Property Name="idMatiere" Type="Int32" Nullable="false" />
+    <Property Name="ID_Classe" Type="Int32" Nullable="false" />
+    <Property Name="Heure_Début" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Heure_Fin" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Jour" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Absences" Relationship="Self.FK__Absences__idCour__45F365D3" FromRole="Cours" ToRole="Absences" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Cours__ID_Classe__38996AB5" FromRole="Cours" ToRole="Classes" />
+    <NavigationProperty Name="Matieres" Relationship="Self.FK__Cours__idMatiere__37A5467C" FromRole="Cours" ToRole="Matieres" />
+    <NavigationProperty Name="Notes" Relationship="Self.FK__Notes__idCours__3C69FB99" FromRole="Cours" ToRole="Notes" />
+  </EntityType>
+  <EntityType Name="Eleves">
+    <Key>
+      <PropertyRef Name="idEleve" />
+    </Key>
+    <Property Name="idEleve" Type="Int32" Nullable="false" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="ID_Classe" Type="Int32" Nullable="false" />
+    <Property Name="dateNaissance" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="lieuNaissance" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InfoMedicales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Absences" Relationship="Self.FK__Absences__idElev__44FF419A" FromRole="Eleves" ToRole="Absences" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Eleves__ID_Class__2F10007B" FromRole="Eleves" ToRole="Classes" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Eleves__idUser__2E1BDC42" FromRole="Eleves" ToRole="Users" />
+    <NavigationProperty Name="Notes" Relationship="Self.FK__Notes__idEleve__3B75D760" FromRole="Eleves" ToRole="Notes" />
+  </EntityType>
+  <EntityType Name="Matieres">
+    <Key>
+      <PropertyRef Name="idMatiere" />
+    </Key>
+    <Property Name="idMatiere" Type="Int32" Nullable="false" />
+    <Property Name="nomMatiere" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idProfesseur" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__Cours__idMatiere__37A5467C" FromRole="Matieres" ToRole="Cours" />
+    <NavigationProperty Name="Professeurs" Relationship="Self.FK__Matieres__idProf__34C8D9D1" FromRole="Matieres" ToRole="Professeurs" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="idMessage" />
+    </Key>
+    <Property Name="idMessage" Type="Int32" Nullable="false" />
+    <Property Name="idExpéditeur" Type="Int32" Nullable="false" />
+    <Property Name="idDestinataire" Type="Int32" Nullable="false" />
+    <Property Name="Contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date_Envoi" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Messages__idDest__4AB81AF0" FromRole="Messages" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK__Messages__idExpé__49C3F6B7" FromRole="Messages" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Niveaux">
+    <Key>
+      <PropertyRef Name="idNiveau" />
+    </Key>
+    <Property Name="idNiveau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="niveau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Classes__idNivea__2B3F6F97" FromRole="Niveaux" ToRole="Classes" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="idNote" />
+    </Key>
+    <Property Name="idNote" Type="Int32" Nullable="false" />
+    <Property Name="idEleve" Type="Int32" Nullable="false" />
+    <Property Name="idCours" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Commentaires" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__Notes__idCours__3C69FB99" FromRole="Notes" ToRole="Cours" />
+    <NavigationProperty Name="Eleves" Relationship="Self.FK__Notes__idEleve__3B75D760" FromRole="Notes" ToRole="Eleves" />
+  </EntityType>
+  <EntityType Name="Professeurs">
+    <Key>
+      <PropertyRef Name="idProfesseur" />
+    </Key>
+    <Property Name="idProfesseur" Type="Int32" Nullable="false" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="Spécialité" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Matieres" Relationship="Self.FK__Matieres__idProf__34C8D9D1" FromRole="Professeurs" ToRole="Matieres" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Professeu__idUse__31EC6D26" FromRole="Professeurs" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mdp" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dateCreation" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Eleves" Relationship="Self.FK__Eleves__idUser__2E1BDC42" FromRole="Users" ToRole="Eleves" />
+    <NavigationProperty Name="Messages" Relationship="Self.FK__Messages__idDest__4AB81AF0" FromRole="Users" ToRole="Messages" />
+    <NavigationProperty Name="Messages1" Relationship="Self.FK__Messages__idExpé__49C3F6B7" FromRole="Users" ToRole="Messages" />
+    <NavigationProperty Name="Professeurs" Relationship="Self.FK__Professeu__idUse__31EC6D26" FromRole="Users" ToRole="Professeurs" />
+  </EntityType>
+  <Association Name="FK__Absences__idCour__45F365D3">
+    <End Role="Cours" Type="Self.Cours" Multiplicity="1" />
+    <End Role="Absences" Type="Self.Absences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="idCours" />
+      </Principal>
+      <Dependent Role="Absences">
+        <PropertyRef Name="idCours" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Absences__idElev__44FF419A">
+    <End Role="Eleves" Type="Self.Eleves" Multiplicity="1" />
+    <End Role="Absences" Type="Self.Absences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eleves">
+        <PropertyRef Name="idEleve" />
+      </Principal>
+      <Dependent Role="Absences">
+        <PropertyRef Name="idEleve" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Classes__idNivea__2B3F6F97">
+    <End Role="Niveaux" Type="bd_EcoleModel.Niveaux" Multiplicity="1" />
+    <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Niveaux">
+        <PropertyRef Name="idNiveau" />
+      </Principal>
+      <Dependent Role="Classes">
+        <PropertyRef Name="idNiveau" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cours__ID_Classe__38996AB5">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+    <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="ID_Classe" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="ID_Classe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Eleves__ID_Class__2F10007B">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+    <End Role="Eleves" Type="Self.Eleves" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="ID_Classe" />
+      </Principal>
+      <Dependent Role="Eleves">
+        <PropertyRef Name="ID_Classe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cours__idMatiere__37A5467C">
+    <End Role="Matieres" Type="Self.Matieres" Multiplicity="1" />
+    <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Matieres">
+        <PropertyRef Name="idMatiere" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="idMatiere" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notes__idCours__3C69FB99">
+    <End Role="Cours" Type="Self.Cours" Multiplicity="1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="idCours" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="idCours" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Eleves__idUser__2E1BDC42">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Eleves" Type="Self.Eleves" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Eleves">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notes__idEleve__3B75D760">
+    <End Role="Eleves" Type="Self.Eleves" Multiplicity="1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eleves">
+        <PropertyRef Name="idEleve" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="idEleve" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Matieres__idProf__34C8D9D1">
+    <End Role="Professeurs" Type="Self.Professeurs" Multiplicity="1" />
+    <End Role="Matieres" Type="Self.Matieres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professeurs">
+        <PropertyRef Name="idProfesseur" />
+      </Principal>
+      <Dependent Role="Matieres">
+        <PropertyRef Name="idProfesseur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Messages__idDest__4AB81AF0">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="idDestinataire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Messages__idExpé__49C3F6B7">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="idExpéditeur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Professeu__idUse__31EC6D26">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Professeurs" Type="Self.Professeurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Professeurs">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bd_EcoleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Absences" EntityType="Self.Absences" />
+    <EntitySet Name="Classes" EntityType="Self.Classes" />
+    <EntitySet Name="Cours" EntityType="Self.Cours" />
+    <EntitySet Name="Eleves" EntityType="Self.Eleves" />
+    <EntitySet Name="Matieres" EntityType="Self.Matieres" />
+    <EntitySet Name="Messages" EntityType="Self.Messages" />
+    <EntitySet Name="Niveaux" EntityType="bd_EcoleModel.Niveaux" />
+    <EntitySet Name="Notes" EntityType="Self.Notes" />
+    <EntitySet Name="Professeurs" EntityType="Self.Professeurs" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK__Absences__idCour__45F365D3" Association="Self.FK__Absences__idCour__45F365D3">
+      <End Role="Cours" EntitySet="Cours" />
+      <End Role="Absences" EntitySet="Absences" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Absences__idElev__44FF419A" Association="Self.FK__Absences__idElev__44FF419A">
+      <End Role="Eleves" EntitySet="Eleves" />
+      <End Role="Absences" EntitySet="Absences" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Classes__idNivea__2B3F6F97" Association="Self.FK__Classes__idNivea__2B3F6F97">
+      <End Role="Niveaux" EntitySet="Niveaux" />
+      <End Role="Classes" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cours__ID_Classe__38996AB5" Association="Self.FK__Cours__ID_Classe__38996AB5">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Cours" EntitySet="Cours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Eleves__ID_Class__2F10007B" Association="Self.FK__Eleves__ID_Class__2F10007B">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Eleves" EntitySet="Eleves" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cours__idMatiere__37A5467C" Association="Self.FK__Cours__idMatiere__37A5467C">
+      <End Role="Matieres" EntitySet="Matieres" />
+      <End Role="Cours" EntitySet="Cours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notes__idCours__3C69FB99" Association="Self.FK__Notes__idCours__3C69FB99">
+      <End Role="Cours" EntitySet="Cours" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Eleves__idUser__2E1BDC42" Association="Self.FK__Eleves__idUser__2E1BDC42">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Eleves" EntitySet="Eleves" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notes__idEleve__3B75D760" Association="Self.FK__Notes__idEleve__3B75D760">
+      <End Role="Eleves" EntitySet="Eleves" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Matieres__idProf__34C8D9D1" Association="Self.FK__Matieres__idProf__34C8D9D1">
+      <End Role="Professeurs" EntitySet="Professeurs" />
+      <End Role="Matieres" EntitySet="Matieres" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Messages__idDest__4AB81AF0" Association="Self.FK__Messages__idDest__4AB81AF0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Messages__idExpé__49C3F6B7" Association="Self.FK__Messages__idExpé__49C3F6B7">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Professeu__idUse__31EC6D26" Association="Self.FK__Professeu__idUse__31EC6D26">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Professeurs" EntitySet="Professeurs" />
+    </AssociationSet>
+    <EntitySet Name="VUsers_Eleves" EntityType="bd_EcoleModel.VUsers_Eleves" />
+    <EntitySet Name="VEleves" EntityType="bd_EcoleModel.VEleves" />
+  </EntityContainer>
+  <EntityType Name="VUsers_Eleves">
+    <Key>
+      <PropertyRef Name="idUser" />
+      <PropertyRef Name="nom" />
+      <PropertyRef Name="prenom" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="idEleve" />
+      <PropertyRef Name="dateNaissance" />
+      <PropertyRef Name="lieuNaissance" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="idEleve" Type="Int32" Nullable="false" />
+    <Property Name="dateNaissance" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="lieuNaissance" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="InfoMedicales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VEleves">
+    <Key>
+      <PropertyRef Name="idEleve" />
+      <PropertyRef Name="idUser" />
+      <PropertyRef Name="nom" />
+      <PropertyRef Name="prenom" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="ID_Classe" />
+      <PropertyRef Name="dateNaissance" />
+      <PropertyRef Name="lieuNaissance" />
+      <PropertyRef Name="dateCreation" />
+    </Key>
+    <Property Name="idEleve" Type="Int32" Nullable="false" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Classe" Type="Int32" Nullable="false" />
+    <Property Name="dateNaissance" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="lieuNaissance" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="InfoMedicales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dateCreation" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+</Schema>

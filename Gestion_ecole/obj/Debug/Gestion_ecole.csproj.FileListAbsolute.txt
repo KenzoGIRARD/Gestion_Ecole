@@ -1,0 +1,17 @@
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\bin\Debug\Gestion_ecole.exe.config
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\bin\Debug\Gestion_ecole.exe
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\bin\Debug\Gestion_ecole.pdb
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\bin\Debug\EntityFramework.dll
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\bin\Debug\EntityFramework.xml
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\bin\Debug\fr\EntityFramework.resources.dll
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_ecole.csproj.AssemblyReference.cache
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_ecole.Form1.resources
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_ecole.Properties.Resources.resources
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_ecole.csproj.GenerateResource.cache
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_ecole.csproj.CoreCompileInputs.cache
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_.EFF44847.Up2Date
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_ecole.exe
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_ecole.pdb
+C:\Users\Hp\source\repos\Gestion_ecole\Gestion_ecole\obj\Debug\Gestion_ecole.Form2.resources

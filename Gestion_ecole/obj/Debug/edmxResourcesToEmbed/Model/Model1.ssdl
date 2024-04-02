@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bd_EcoleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Absences">
+    <Key>
+      <PropertyRef Name="idAbsence" />
+    </Key>
+    <Property Name="idAbsence" Type="int" Nullable="false" />
+    <Property Name="idEleve" Type="int" Nullable="false" />
+    <Property Name="idCours" Type="int" Nullable="false" />
+    <Property Name="DateAbsence" Type="date" Nullable="false" />
+    <Property Name="Justifie" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Classes">
+    <Key>
+      <PropertyRef Name="ID_Classe" />
+    </Key>
+    <Property Name="ID_Classe" Type="int" Nullable="false" />
+    <Property Name="Nom_de_Classe" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="idNiveau" Type="int" Nullable="false" />
+    <Property Name="Année_Scolaire" Type="varchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="idCours" />
+    </Key>
+    <Property Name="idCours" Type="int" Nullable="false" />
+    <Property Name="idMatiere" Type="int" Nullable="false" />
+    <Property Name="ID_Classe" Type="int" Nullable="false" />
+    <Property Name="Heure_Début" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Heure_Fin" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Jour" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Eleves">
+    <Key>
+      <PropertyRef Name="idEleve" />
+    </Key>
+    <Property Name="idEleve" Type="int" Nullable="false" />
+    <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="ID_Classe" Type="int" Nullable="false" />
+    <Property Name="dateNaissance" Type="date" Nullable="false" />
+    <Property Name="lieuNaissance" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="InfoMedicales" Type="text" />
+  </EntityType>
+  <EntityType Name="Matieres">
+    <Key>
+      <PropertyRef Name="idMatiere" />
+    </Key>
+    <Property Name="idMatiere" Type="int" Nullable="false" />
+    <Property Name="nomMatiere" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="idProfesseur" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="idMessage" />
+    </Key>
+    <Property Name="idMessage" Type="int" Nullable="false" />
+    <Property Name="idExpéditeur" Type="int" Nullable="false" />
+    <Property Name="idDestinataire" Type="int" Nullable="false" />
+    <Property Name="Contenu" Type="text" Nullable="false" />
+    <Property Name="Date_Envoi" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Niveaux">
+    <Key>
+      <PropertyRef Name="idNiveau" />
+    </Key>
+    <Property Name="idNiveau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="niveau" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="idNote" />
+    </Key>
+    <Property Name="idNote" Type="int" Nullable="false" />
+    <Property Name="idEleve" Type="int" Nullable="false" />
+    <Property Name="idCours" Type="int" Nullable="false" />
+    <Property Name="Note" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Commentaires" Type="text" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Professeurs">
+    <Key>
+      <PropertyRef Name="idProfesseur" />
+    </Key>
+    <Property Name="idProfesseur" Type="int" Nullable="false" />
+    <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="Spécialité" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="mdp" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dateCreation" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'bd_Ecole.dbo.VEleves' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="VEleves">
+    <Key>
+      <PropertyRef Name="idEleve" />
+      <PropertyRef Name="idUser" />
+      <PropertyRef Name="nom" />
+      <PropertyRef Name="prenom" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="ID_Classe" />
+      <PropertyRef Name="dateNaissance" />
+      <PropertyRef Name="lieuNaissance" />
+      <PropertyRef Name="dateCreation" />
+    </Key>
+    <Property Name="idEleve" Type="int" Nullable="false" />
+    <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ID_Classe" Type="int" Nullable="false" />
+    <Property Name="dateNaissance" Type="date" Nullable="false" />
+    <Property Name="lieuNaissance" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="InfoMedicales" Type="text" />
+    <Property Name="dateCreation" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Absences__idCour__45F365D3">
+    <End Role="Cours" Type="Self.Cours" Multiplicity="1" />
+    <End Role="Absences" Type="Self.Absences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="idCours" />
+      </Principal>
+      <Dependent Role="Absences">
+        <PropertyRef Name="idCours" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Absences__idElev__44FF419A">
+    <End Role="Eleves" Type="Self.Eleves" Multiplicity="1" />
+    <End Role="Absences" Type="Self.Absences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eleves">
+        <PropertyRef Name="idEleve" />
+      </Principal>
+      <Dependent Role="Absences">
+        <PropertyRef Name="idEleve" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Classes__idNivea__2B3F6F97">
+    <End Role="Niveaux" Type="Self.Niveaux" Multiplicity="1" />
+    <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Niveaux">
+        <PropertyRef Name="idNiveau" />
+      </Principal>
+      <Dependent Role="Classes">
+        <PropertyRef Name="idNiveau" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cours__ID_Classe__38996AB5">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+    <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="ID_Classe" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="ID_Classe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cours__idMatiere__37A5467C">
+    <End Role="Matieres" Type="Self.Matieres" Multiplicity="1" />
+    <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Matieres">
+        <PropertyRef Name="idMatiere" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="idMatiere" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Eleves__ID_Class__2F10007B">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+    <End Role="Eleves" Type="Self.Eleves" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="ID_Classe" />
+      </Principal>
+      <Dependent Role="Eleves">
+        <PropertyRef Name="ID_Classe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Eleves__idUser__2E1BDC42">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Eleves" Type="Self.Eleves" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Eleves">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Matieres__idProf__34C8D9D1">
+    <End Role="Professeurs" Type="Self.Professeurs" Multiplicity="1" />
+    <End Role="Matieres" Type="Self.Matieres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professeurs">
+        <PropertyRef Name="idProfesseur" />
+      </Principal>
+      <Dependent Role="Matieres">
+        <PropertyRef Name="idProfesseur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Messages__idDest__4AB81AF0">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="idDestinataire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Messages__idExpé__49C3F6B7">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="idExpéditeur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notes__idCours__3C69FB99">
+    <End Role="Cours" Type="Self.Cours" Multiplicity="1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="idCours" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="idCours" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notes__idEleve__3B75D760">
+    <End Role="Eleves" Type="Self.Eleves" Multiplicity="1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eleves">
+        <PropertyRef Name="idEleve" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="idEleve" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Professeu__idUse__31EC6D26">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Professeurs" Type="Self.Professeurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Professeurs">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bd_EcoleModelStoreContainer">
+    <EntitySet Name="Absences" EntityType="Self.Absences" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cours" EntityType="Self.Cours" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Eleves" EntityType="Self.Eleves" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Matieres" EntityType="Self.Matieres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Niveaux" EntityType="Self.Niveaux" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Professeurs" EntityType="Self.Professeurs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VEleves" EntityType="Self.VEleves" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VEleves].[idEleve] AS [idEleve], 
+    [VEleves].[idUser] AS [idUser], 
+    [VEleves].[nom] AS [nom], 
+    [VEleves].[prenom] AS [prenom], 
+    [VEleves].[email] AS [email], 
+    [VEleves].[ID_Classe] AS [ID_Classe], 
+    [VEleves].[dateNaissance] AS [dateNaissance], 
+    [VEleves].[lieuNaissance] AS [lieuNaissance], 
+    [VEleves].[InfoMedicales] AS [InfoMedicales], 
+    [VEleves].[dateCreation] AS [dateCreation]
+    FROM [dbo].[VEleves] AS [VEleves]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Absences__idCour__45F365D3" Association="Self.FK__Absences__idCour__45F365D3">
+      <End Role="Cours" EntitySet="Cours" />
+      <End Role="Absences" EntitySet="Absences" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Absences__idElev__44FF419A" Association="Self.FK__Absences__idElev__44FF419A">
+      <End Role="Eleves" EntitySet="Eleves" />
+      <End Role="Absences" EntitySet="Absences" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Classes__idNivea__2B3F6F97" Association="Self.FK__Classes__idNivea__2B3F6F97">
+      <End Role="Niveaux" EntitySet="Niveaux" />
+      <End Role="Classes" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cours__ID_Classe__38996AB5" Association="Self.FK__Cours__ID_Classe__38996AB5">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Cours" EntitySet="Cours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cours__idMatiere__37A5467C" Association="Self.FK__Cours__idMatiere__37A5467C">
+      <End Role="Matieres" EntitySet="Matieres" />
+      <End Role="Cours" EntitySet="Cours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Eleves__ID_Class__2F10007B" Association="Self.FK__Eleves__ID_Class__2F10007B">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Eleves" EntitySet="Eleves" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Eleves__idUser__2E1BDC42" Association="Self.FK__Eleves__idUser__2E1BDC42">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Eleves" EntitySet="Eleves" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Matieres__idProf__34C8D9D1" Association="Self.FK__Matieres__idProf__34C8D9D1">
+      <End Role="Professeurs" EntitySet="Professeurs" />
+      <End Role="Matieres" EntitySet="Matieres" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Messages__idDest__4AB81AF0" Association="Self.FK__Messages__idDest__4AB81AF0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Messages__idExpé__49C3F6B7" Association="Self.FK__Messages__idExpé__49C3F6B7">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notes__idCours__3C69FB99" Association="Self.FK__Notes__idCours__3C69FB99">
+      <End Role="Cours" EntitySet="Cours" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notes__idEleve__3B75D760" Association="Self.FK__Notes__idEleve__3B75D760">
+      <End Role="Eleves" EntitySet="Eleves" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Professeu__idUse__31EC6D26" Association="Self.FK__Professeu__idUse__31EC6D26">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Professeurs" EntitySet="Professeurs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

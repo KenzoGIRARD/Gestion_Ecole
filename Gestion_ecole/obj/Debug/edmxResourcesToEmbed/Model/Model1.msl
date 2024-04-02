@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bd_EcoleModelStoreContainer" CdmEntityContainer="bd_EcoleEntities">
+    <EntitySetMapping Name="Absences">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Absences">
+        <MappingFragment StoreEntitySet="Absences">
+          <ScalarProperty Name="idAbsence" ColumnName="idAbsence" />
+          <ScalarProperty Name="idEleve" ColumnName="idEleve" />
+          <ScalarProperty Name="idCours" ColumnName="idCours" />
+          <ScalarProperty Name="DateAbsence" ColumnName="DateAbsence" />
+          <ScalarProperty Name="Justifie" ColumnName="Justifie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Classes">
+        <MappingFragment StoreEntitySet="Classes">
+          <ScalarProperty Name="ID_Classe" ColumnName="ID_Classe" />
+          <ScalarProperty Name="Nom_de_Classe" ColumnName="Nom_de_Classe" />
+          <ScalarProperty Name="idNiveau" ColumnName="idNiveau" />
+          <ScalarProperty Name="Année_Scolaire" ColumnName="Année_Scolaire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cours">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Cours">
+        <MappingFragment StoreEntitySet="Cours">
+          <ScalarProperty Name="idCours" ColumnName="idCours" />
+          <ScalarProperty Name="idMatiere" ColumnName="idMatiere" />
+          <ScalarProperty Name="ID_Classe" ColumnName="ID_Classe" />
+          <ScalarProperty Name="Heure_Début" ColumnName="Heure_Début" />
+          <ScalarProperty Name="Heure_Fin" ColumnName="Heure_Fin" />
+          <ScalarProperty Name="Jour" ColumnName="Jour" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Eleves">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Eleves">
+        <MappingFragment StoreEntitySet="Eleves">
+          <ScalarProperty Name="idEleve" ColumnName="idEleve" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="ID_Classe" ColumnName="ID_Classe" />
+          <ScalarProperty Name="dateNaissance" ColumnName="dateNaissance" />
+          <ScalarProperty Name="lieuNaissance" ColumnName="lieuNaissance" />
+          <ScalarProperty Name="InfoMedicales" ColumnName="InfoMedicales" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Matieres">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Matieres">
+        <MappingFragment StoreEntitySet="Matieres">
+          <ScalarProperty Name="idMatiere" ColumnName="idMatiere" />
+          <ScalarProperty Name="nomMatiere" ColumnName="nomMatiere" />
+          <ScalarProperty Name="idProfesseur" ColumnName="idProfesseur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Messages">
+        <MappingFragment StoreEntitySet="Messages">
+          <ScalarProperty Name="idMessage" ColumnName="idMessage" />
+          <ScalarProperty Name="idExpéditeur" ColumnName="idExpéditeur" />
+          <ScalarProperty Name="idDestinataire" ColumnName="idDestinataire" />
+          <ScalarProperty Name="Contenu" ColumnName="Contenu" />
+          <ScalarProperty Name="Date_Envoi" ColumnName="Date_Envoi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Niveaux">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Niveaux">
+        <MappingFragment StoreEntitySet="Niveaux">
+          <ScalarProperty Name="idNiveau" ColumnName="idNiveau" />
+          <ScalarProperty Name="niveau" ColumnName="niveau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Notes">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="idNote" ColumnName="idNote" />
+          <ScalarProperty Name="idEleve" ColumnName="idEleve" />
+          <ScalarProperty Name="idCours" ColumnName="idCours" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Commentaires" ColumnName="Commentaires" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professeurs">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Professeurs">
+        <MappingFragment StoreEntitySet="Professeurs">
+          <ScalarProperty Name="idProfesseur" ColumnName="idProfesseur" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="Spécialité" ColumnName="Spécialité" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="bd_EcoleModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mdp" ColumnName="mdp" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEleves">
+      <EntityTypeMapping TypeName="bd_EcoleModel.VEleves">
+        <MappingFragment StoreEntitySet="VEleves">
+          <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+          <ScalarProperty Name="InfoMedicales" ColumnName="InfoMedicales" />
+          <ScalarProperty Name="lieuNaissance" ColumnName="lieuNaissance" />
+          <ScalarProperty Name="dateNaissance" ColumnName="dateNaissance" />
+          <ScalarProperty Name="ID_Classe" ColumnName="ID_Classe" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idEleve" ColumnName="idEleve" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
